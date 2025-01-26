@@ -15,7 +15,7 @@ import os
 def convert_census_block_group_csv(census_file_path: str) -> dict:
     df = pd.read_csv(census_file_path)
     
-    def regex_extractor(column_name: str) -> (str, int):
+    def regex_extractor(column_name: str) -> (str, int): # type: ignore
         pattern = r"Block Group (\d+); Census Tract (\d+); ([\w\s]+) County; ([\w\s]+)!!Estimate"
         match = re.match(pattern, column_name)
         
