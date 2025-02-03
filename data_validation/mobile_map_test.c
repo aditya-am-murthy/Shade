@@ -42,8 +42,9 @@ void process_csv_file(char *filename) {
         char *longitude_str = NULL;
         char *token = strtok(line, ",");
         char *time_str = NULL;
+        char *speed_str = NULL;
 
-        while (token != NULL && col < 6) {
+        while (token != NULL && col < 11) {
             if (col == 3) {
                 time_str = token;
             } else
@@ -51,6 +52,9 @@ void process_csv_file(char *filename) {
                 latitude_str = token;
             } else if (col == 5) {
                 longitude_str = token;
+            }
+            else if (col == 10) {
+                speed_str = token;
             }
             token = strtok(NULL, ",");
             col++;
@@ -70,8 +74,11 @@ void process_csv_file(char *filename) {
                 // Convert the time to an integer (hour)
                 int hour_int = atoi(hour);
 
+                //conver the speed to a float
+                float speed = atof(speed_str);
+
                 // Check if the hour is between 20:00 (8 PM) or before 04:00 (4 AM)
-                if (hour_int >= 20 || hour_int < 4) {
+                if ((hour_int >= 20 || hour_int < 4) && speed < 3 && speed > -3) {
                     
                     if (latitude_str && longitude_str) {
                         double latitude = atof(latitude_str);
