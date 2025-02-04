@@ -6,25 +6,26 @@
 #include <stdlib.h>
 
 typedef struct Entry {
-    char* key;
-    uint16_t value1;
-    uint16_t value2;
-    struct Entry* next;
+    char* key;                  // Key (string)
+    uint16_t value1;            // First 12-bit integer
+    uint16_t value2;            // Second 12-bit integer
+    float latitude;             // Latitude (float)
+    float longitude;            // Longitude (float)
+    struct Entry* next;         // Pointer to next entry
 } Entry;
 
 typedef struct {
-    Entry** entries;
-    size_t capacity;
-    size_t size;
-    size_t resize_threshold; // New field
+    Entry** entries;            // Array of entry pointers
+    size_t capacity;            // Total capacity
+    size_t size;                // Current number of entries
+    size_t resize_threshold;    // Resize threshold (70% load factor)
 } HashMap;
 
-
+// Function prototypes
 HashMap* hashmap_create(size_t capacity);
 void hashmap_destroy(HashMap* map);
-bool hashmap_set(HashMap* map, const char* key, uint16_t value1, uint16_t value2);
-bool hashmap_get(HashMap* map, const char* key, uint16_t* value1, uint16_t* value2);
+bool hashmap_set(HashMap* map, const char* key, uint16_t value1, uint16_t value2, float latitude, float longitude);
+bool hashmap_get(HashMap* map, const char* key, uint16_t* value1, uint16_t* value2, float* latitude, float* longitude);
 bool hashmap_delete(HashMap* map, const char* key);
-static void hashmap_resize(HashMap* map);
 
 #endif // HASHMAP_H
