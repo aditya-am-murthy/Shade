@@ -29,7 +29,6 @@ mmap = mmap.fillna(0)
 cmap = cmap.astype(int)
 mmap = mmap.astype(int)
 
-
 # Print the updated DataFrames
 print("Updated cmap:")
 print(cmap)
@@ -67,6 +66,28 @@ fig.colorbar(cmap_plot, ax=ax[0])
 mmap_plot = ax[1].imshow(mmap, cmap='viridis', aspect='auto')
 ax[1].set_title(mmap_file_path)
 fig.colorbar(mmap_plot, ax=ax[1])
+
+#rotate both the plots 180 degrees
+for a in ax:
+    a.invert_yaxis()
+    a.invert_xaxis()
+
+#overlay the plots onto google maps
+# Load the Google Maps image of Los Angeles
+img = plt.imread("https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Los_Angeles_%28California%29%2C_Angelino_Heights%2C_Echo_Park_Lake%2C_Downtown_L.A._%282013%29.jpg/1024px-Los_Angeles_%28California%29%2C_Angelino_Heights%2C_Echo_Park_Lake%2C_Downtown_L.A._%282013%29.jpg")
+
+# Plot the Google Maps image
+ax[0].imshow(img, extent=[-118.3, -118.15, 34.05, 34.1])
+ax[1].imshow(img, extent=[-118.3, -118.15, 34.05, 34.1])
+
+# Set the aspect of the plots to be equal
+for a in ax:
+    a.set_aspect('equal')
+
+# Set the title of the figure
+fig.suptitle('Cmap and Mmap Heatmaps Overlayed on Google Maps')
+
+# Adjust the layout
 
 plt.tight_layout()
 plt.show()

@@ -40,3 +40,18 @@ plt.imshow(mmap, cmap='viridis')
 plt.colorbar()
 plt.title('Mobile Phone Data map Values')
 plt.show()
+
+# graph the heatmaps ased on the latitude and longitude values
+fig, ax = plt.subplots(1, 2, figsize=(12, 6))
+
+# Plot the cmap DataFrame
+cmap_plot = ax[0].scatter(data['longitude'], data['latitude'], c=data['cmap val'], cmap='viridis')
+ax[0].set_title('Census map Values')
+fig.colorbar(cmap_plot, ax=ax[0])
+
+# Plot the mmap DataFrame
+mmap_plot = ax[1].scatter(data['longitude'], data['latitude'], c=data['mmap val'], cmap='viridis')
+ax[1].set_title('Mobile Phone Data map Values')
+fig.colorbar(mmap_plot, ax=ax[1])
+
+plt.show()
