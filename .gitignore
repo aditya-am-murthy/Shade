@@ -1,0 +1,18 @@
+.env
+july_csv/
+july_csv/*
+july_parquet/
+july_parquet/*
+sample_data_csv/*
+sandbox.ipynb
+data_validation/mmap.txt
+
+# Ignore all paths directories and their contents
+paths/
+ml/data/location_processor/paths/
+
+# Keep the source code and configuration files
+!ml/data/location_processor/*.c
+!ml/data/location_processor/*.h
+!ml/data/location_processor/Makefile
+!ml/data/location_processor/*.sh
