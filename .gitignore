@@ -6,6 +6,9 @@ july_parquet/*
 sample_data_csv/*
 sandbox.ipynb
 data_validation/mmap.txt
+maps/map*
+maps/region_map*
+.DS_Store
 
 # Ignore all paths directories and their contents
 paths/
